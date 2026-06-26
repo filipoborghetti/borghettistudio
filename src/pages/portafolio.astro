@@ -1,0 +1,748 @@
+---
+import Base from "../layouts/Base.astro";
+import { casos } from "../data/casos";
+
+const totalProyectos = casos.length;
+---
+
+<Base
+  title="Portafolio"
+  description="Sitios web que construimos para artistas independientes."
+>
+  <main class="portafolio">
+    <section class="hero">
+      <div class="texture"></div>
+      <div class="glow"></div>
+
+      <div class="hero-inner">
+        <div class="hero-text" data-animate>
+          <p class="eyebrow">Portafolio</p>
+          <h1>
+            Lo que<br /><em>construimos.</em>
+          </h1>
+          <p class="desc">
+            Cada sitio es único. Diseñado y desarrollado desde cero para el
+            artista — sin plantillas, sin atajos.
+          </p>
+        </div>
+
+        <div class="hero-stats" data-animate data-animate-delay="1">
+          <div class="stat">
+            <span class="stat-num">{totalProyectos}</span>
+            <span class="stat-label">Proyectos activos</span>
+          </div>
+          <div class="stat-divider"></div>
+          <div class="stat">
+            <span class="stat-num">100%</span>
+            <span class="stat-label">Diseño a medida</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="casos">
+      <div class="casos-inner">
+        <div class="casos-header" data-animate>
+          <p class="section-label">Casos de estudio</p>
+          <p class="section-desc">
+            Hacé click en un proyecto para ver el caso completo.
+          </p>
+        </div>
+
+        <div class="casos-list">
+          {
+            casos.map((caso, i) => (
+              <article
+                class:list={["caso", i % 2 === 1 && "caso--reverse"]}
+                data-animate
+                data-animate-delay={String(Math.min(i + 1, 5))}
+              >
+                <a href={caso.urlCaso} class="caso-link" aria-label={`Ver caso de ${caso.nombre}`}>
+                  <div class="caso-index">
+                    <span>{String(i + 1).padStart(2, "0")}</span>
+                  </div>
+
+                  <div class="caso-media">
+                    <img
+                      src={caso.screenshot}
+                      alt={`Web de ${caso.nombre}`}
+                      class="screenshot"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <video
+                      class="hover-video"
+                      src={caso.video}
+                      preload="none"
+                      loop
+                      muted
+                      playsinline
+                    />
+                    <div class="media-gradient"></div>
+                    <div class="media-badge">
+                      <span class="live-dot"></span>
+                      Web activa
+                    </div>
+                  </div>
+
+                  <div class="caso-body">
+                    <div class="caso-top">
+                      <div>
+                        <span class="caso-tag">{caso.tag}</span>
+                        <h2>{caso.nombre}</h2>
+                      </div>
+                      <span class="caso-arrow" aria-hidden="true">
+                        <svg
+                          width="20"
+                          height="20"
+                          viewBox="0 0 24 24"
+                          fill="none"
+                          stroke="currentColor"
+                          stroke-width="2"
+                          stroke-linecap="round"
+                          stroke-linejoin="round"
+                        >
+                          <path d="M7 17 17 7"></path>
+                          <path d="M7 7h10v10"></path>
+                        </svg>
+                      </span>
+                    </div>
+
+                    <p class="caso-desc">{caso.descripcion}</p>
+
+                    <div class="caso-metrics">
+                      <div class="metric">
+                        <span class="metric-num">{caso.seguidores}</span>
+                        <span class="metric-label">Seguidores</span>
+                      </div>
+                      <div class="metric-sep"></div>
+                      <div class="metric">
+                        <span class="metric-num">{caso.oyentes}</span>
+                        <span class="metric-label">Oyentes / mes</span>
+                      </div>
+                    </div>
+
+                    <span class="caso-cta">Ver caso completo</span>
+                  </div>
+                </a>
+
+                <div class="caso-actions">
+                  <a href={caso.urlWeb} target="_blank" class="btn-outline">
+                    Ver web en vivo
+                    <svg
+                      width="14"
+                      height="14"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M15 3h6v6"></path>
+                      <path d="M10 14 21 3"></path>
+                      <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+                    </svg>
+                  </a>
+                  <a href={caso.instagram} target="_blank" class="btn-icon" aria-label="Instagram">
+                    <svg
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                      <circle cx="12" cy="12" r="4"></circle>
+                      <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"></circle>
+                    </svg>
+                  </a>
+                  <a href={caso.spotify} target="_blank" class="btn-icon" aria-label="Spotify">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z"></path>
+                    </svg>
+                  </a>
+                </div>
+              </article>
+            ))
+          }
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section">
+      <div class="cta-inner" data-animate>
+        <div class="cta-text">
+          <p class="eyebrow">¿Tu turno?</p>
+          <h2>Construyamos tu presencia digital.</h2>
+        </div>
+        <a href="/contacto" class="btn-primary">
+          Hablemos
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M3 13L13 3M13 3H6M13 3V10"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .portafolio {
+    background: var(--black);
+  }
+
+  /* ── Hero ── */
+  .hero {
+    position: relative;
+    padding: 10rem 1.5rem 5rem;
+    overflow: hidden;
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .glow {
+    position: absolute;
+    top: -200px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(232, 33, 59, 0.1) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 0.92;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 440px;
+  }
+
+  .hero-stats {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    padding: 1.5rem 0;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .stat-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .stat-label {
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .stat-divider {
+    width: 0.5px;
+    height: 48px;
+    background: rgba(240, 237, 230, 0.1);
+  }
+
+  /* ── Casos ── */
+  .casos {
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .casos-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .casos-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 3rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .section-label {
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+  }
+
+  .section-desc {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .casos-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+  }
+
+  .caso {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .caso-link {
+    display: grid;
+    grid-template-columns: 1fr;
+    border: 0.5px solid rgba(240, 237, 230, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0f0f0f;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .caso-link:hover {
+    border-color: rgba(232, 33, 59, 0.3);
+    box-shadow: 0 0 60px rgba(232, 33, 59, 0.06);
+  }
+
+  .caso-index {
+    display: none;
+  }
+
+  .caso-media {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  .hover-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .caso-link:hover .screenshot {
+    opacity: 0;
+  }
+
+  .caso-link:hover .hover-video {
+    opacity: 1;
+  }
+
+  .media-gradient {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(15, 15, 15, 0.7) 0%,
+      transparent 45%
+    );
+    pointer-events: none;
+  }
+
+  .media-badge {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.65rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(15, 15, 15, 0.75);
+    backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(240, 237, 230, 0.15);
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .caso-body {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .caso-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+
+  .caso-tag {
+    font-size: 0.65rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .caso-arrow {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 0.5px solid rgba(240, 237, 230, 0.15);
+    color: var(--muted);
+    transition:
+      background 0.25s ease,
+      color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .caso-link:hover .caso-arrow {
+    background: var(--red);
+    border-color: var(--red);
+    color: var(--cream);
+  }
+
+  .caso-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .caso-metrics {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .metric-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.25rem;
+  }
+
+  .metric-label {
+    font-size: 0.65rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .metric-sep {
+    width: 0.5px;
+    height: 32px;
+    background: rgba(240, 237, 230, 0.1);
+  }
+
+  .caso-cta {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--red);
+    letter-spacing: 0.02em;
+  }
+
+  .caso-actions {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding-left: 0.25rem;
+  }
+
+  .btn-outline {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: var(--cream);
+    border: 0.5px solid rgba(240, 237, 230, 0.2);
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .btn-outline:hover {
+    background: rgba(240, 237, 230, 0.06);
+    border-color: rgba(240, 237, 230, 0.4);
+  }
+
+  .btn-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
+    border: 0.5px solid rgba(240, 237, 230, 0.15);
+    color: var(--muted);
+    transition:
+      color 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .btn-icon:hover {
+    color: var(--cream);
+    border-color: rgba(240, 237, 230, 0.35);
+  }
+
+  /* ── CTA ── */
+  .cta-section {
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    background: #0a0a0a;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .cta-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+  }
+
+  .cta-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.05;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(232, 33, 59, 0.35);
+    transition:
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 35px rgba(232, 33, 59, 0.55);
+  }
+
+  /* ── Desktop ── */
+  @media (min-width: 768px) {
+    .hero {
+      padding: 12rem 4rem 6rem;
+    }
+
+    .hero-inner {
+      flex-direction: row;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .hero-stats {
+      border-top: none;
+      padding: 0;
+      flex-shrink: 0;
+    }
+
+    .casos {
+      padding: 6rem 4rem 8rem;
+    }
+
+    .casos-header {
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .caso-link {
+      grid-template-columns: 1fr 1fr;
+    }
+
+    .caso--reverse .caso-link {
+      direction: rtl;
+    }
+
+    .caso--reverse .caso-link > * {
+      direction: ltr;
+    }
+
+    .caso-index {
+      display: flex;
+      position: absolute;
+      top: -1.5rem;
+      left: 0;
+      z-index: 2;
+    }
+
+    .caso {
+      position: relative;
+    }
+
+    .caso-index span {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 5rem;
+      font-weight: 800;
+      color: rgba(240, 237, 230, 0.04);
+      line-height: 1;
+      letter-spacing: -0.02em;
+    }
+
+    .caso-media {
+      aspect-ratio: auto;
+      min-height: 380px;
+    }
+
+    .caso-body {
+      padding: 2.5rem;
+      justify-content: center;
+    }
+
+    h2 {
+      font-size: 2.5rem;
+    }
+
+    .cta-section {
+      padding: 5rem 4rem 8rem;
+    }
+
+    .cta-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".caso-link").forEach((link) => {
+    const video = link.querySelector(".hover-video") as HTMLVideoElement;
+    link.addEventListener("mouseenter", () => {
+      if (video) {
+        video.currentTime = 0;
+        video.play();
+      }
+    });
+    link.addEventListener("mouseleave", () => video?.pause());
+  });
+</script>
