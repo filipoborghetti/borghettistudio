@@ -1,0 +1,255 @@
+---
+
+---
+
+<section id="hero">
+  <div class="overlay"></div>
+
+  <div class="hero-inner" data-animate="left">
+    <h1>
+      Bio. Shows. Tu música. Todo eso y más
+      <em>en tu propia web.</em>
+    </h1>
+
+    <p class="subtitle">
+      Tu música merece más que un perfil de Instagram. Reuní tus lanzamientos,
+      shows, contenido y contacto en una web profesional hecha para vos.
+    </p>
+
+    <div class="pills">
+      <span class="pill"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-search-check-icon lucide-search-check"
+          ><path d="m8 11 2 2 4-4"></path><circle cx="11" cy="11" r="8"
+          ></circle><path d="m21 21-4.3-4.3"></path></svg
+        > SEO optimizado</span
+      >
+      <span class="pill"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-tablet-smartphone-icon lucide-tablet-smartphone"
+          ><rect width="10" height="14" x="3" y="8" rx="2"></rect><path
+            d="M5 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2h-2.4"
+          ></path><path d="M8 18h.01"></path></svg
+        > Optimizado para celulares</span
+      >
+      <span class="pill"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-cog-icon lucide-cog"
+          ><path d="M11 10.27 7 3.34"></path><path d="m11 13.73-4 6.93"
+          ></path><path d="M12 22v-2"></path><path d="M12 2v2"></path><path
+            d="M14 12h8"></path><path d="m17 20.66-1-1.73"></path><path
+            d="m17 3.34-1 1.73"></path><path d="M2 12h2"></path><path
+            d="m20.66 17-1.73-1"></path><path d="m20.66 7-1.73 1"></path><path
+            d="m3.34 17 1.73-1"></path><path d="m3.34 7 1.73 1"></path><circle
+            cx="12"
+            cy="12"
+            r="2"></circle><circle cx="12" cy="12" r="8"></circle></svg
+        > Diseño personalizado</span
+      >
+      <span class="pill"
+        ><svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-sticky-note-icon lucide-sticky-note"
+          ><path
+            d="M21 9a2.4 2.4 0 0 0-.706-1.706l-3.588-3.588A2.4 2.4 0 0 0 15 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2z"
+          ></path><path d="M15 3v5a1 1 0 0 0 1 1h5"></path></svg
+        > Sin plantillas</span
+      >
+    </div>
+
+    <a href="#contacto" class="cta">
+      Empezá tu proyecto
+      <svg
+        width="16"
+        height="16"
+        viewBox="0 0 16 16"
+        fill="none"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M3 13L13 3M13 3H6M13 3V10"
+          stroke="currentColor"
+          stroke-width="1.5"
+          stroke-linecap="round"
+          stroke-linejoin="round"></path>
+      </svg>
+    </a>
+  </div>
+</section>
+
+<style>
+  #hero {
+    position: relative;
+    min-height: clamp(700px, 100svh, 1000px);
+    display: flex;
+    align-items: flex-start;
+    background-image: url("/images/hero-bg.webp");
+    background-size: cover;
+    background-position: 70% center;
+    padding: 10rem 1.5rem 3rem;
+  }
+
+  .overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to right,
+      rgba(8, 8, 8, 0.92) 0%,
+      rgba(8, 8, 8, 0.75) 50%,
+      rgba(80, 10, 10, 0.4) 100%
+    );
+    z-index: 0;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+  }
+
+  h1 {
+    font-family: var(--font-display);
+    font-size: 3.3rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .subtitle {
+    font-size: 1rem;
+    color: rgba(240, 237, 230, 0.65);
+    line-height: 1.7;
+    margin-bottom: 1.5rem;
+  }
+
+  .pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 2rem;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    color: var(--cream);
+    background: rgba(240, 237, 230, 0.08);
+    border: 0.5px solid rgba(240, 237, 230, 0.2);
+    padding: 0.35rem 0.875rem;
+    border-radius: 100px;
+    letter-spacing: 0.02em;
+  }
+
+  .pill svg {
+    width: 13px;
+    height: 13px;
+    flex-shrink: 0;
+  }
+
+  .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    width: fit-content;
+    letter-spacing: 0.02em;
+    transition: background 0.2s ease;
+  }
+
+  .cta:hover {
+    background: #ff3350;
+  }
+
+  .cta:focus-visible {
+    outline: 2px solid var(--cream);
+    outline-offset: 4px;
+  }
+  @media (min-width: 768px) {
+    #hero {
+      align-items: center;
+      padding: 8rem 4rem 5rem;
+      background-position: center center;
+    }
+
+    .hero-inner {
+      max-width: 900px;
+    }
+
+    h1 {
+      font-size: 5.5rem;
+      margin-bottom: 1.75rem;
+    }
+
+    .subtitle {
+      font-size: 1.05rem;
+      margin-bottom: 2rem;
+      max-width: 560px;
+    }
+
+    .pills {
+      margin-bottom: 2.5rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      padding: 0.4rem 1rem;
+    }
+
+    .cta {
+      font-size: 0.95rem;
+      padding: 1rem 2rem;
+    }
+  }
+</style>

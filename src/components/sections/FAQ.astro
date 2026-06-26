@@ -1,0 +1,267 @@
+---
+import { faqs } from "../../data/faq";
+---
+
+<section id="faq">
+  <div class="texture"></div>
+  <div class="glow"></div>
+
+  <div class="faq-inner">
+    <div class="header" data-animate data-animate-delay="1">
+      <p class="eyebrow">FAQ</p>
+      <h2>Preguntas<br />frecuentes.</h2>
+      <p class="otra-duda">
+        ¿Tenés otra duda? <a href="/contacto">Escribinos.</a>
+      </p>
+    </div>
+
+    <div class="items" data-animate data-animate-delay="1">
+      {
+        faqs.map((faq, i) => (
+          <div class="item" data-index={i}>
+            <button
+              class="pregunta"
+              aria-expanded="false"
+              aria-controls={`faq-${i}`}
+            >
+              <span>{faq.pregunta}</span>
+              <svg
+                class="icon"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M6 9l6 6 6-6" />
+              </svg>
+            </button>
+            <div id={`faq-${i}`} class="respuesta">
+              <div class="respuesta-inner">
+                <p>{faq.respuesta}</p>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqs.map((faq) => ({
+      "@type": "Question",
+      name: faq.pregunta,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.respuesta,
+      },
+    })),
+  })}
+/>
+
+<style>
+  #faq {
+    position: relative;
+    padding: 4rem 1.5rem;
+    background: #080808;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    overflow: hidden;
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .glow {
+    position: absolute;
+    top: 0;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(232, 33, 59, 0.07) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .faq-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+
+  .otra-duda {
+    font-size: 0.85rem;
+    color: var(--muted);
+  }
+
+  .otra-duda a {
+    color: var(--red);
+    font-weight: 500;
+    transition: opacity 0.2s ease;
+  }
+
+  .otra-duda a:hover {
+    opacity: 0.75;
+  }
+
+  .items {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .item {
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .item:first-child {
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .pregunta {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1.5rem 0;
+    text-align: left;
+    color: white;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 400;
+    transition: color 0.2s ease;
+  }
+
+  .item.open .pregunta {
+    color: var(--red);
+  }
+
+  .icon {
+    flex-shrink: 0;
+    transition: transform 0.3s ease;
+    color: var(--red);
+  }
+
+  .item.open .icon {
+    transform: rotate(180deg);
+    color: var(--red);
+  }
+
+  .respuesta {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s ease;
+  }
+
+  .respuesta-inner {
+    overflow: hidden;
+  }
+
+  .item.open .respuesta {
+    grid-template-rows: 1fr;
+  }
+
+  .respuesta p {
+    overflow: hidden;
+    font-size: 0.875rem;
+    color: rgb(177, 177, 177);
+    line-height: 1.75;
+    padding-bottom: 1.5rem;
+    max-width: 580px;
+  }
+
+  .pregunta:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 4px;
+  }
+
+  @media (min-width: 768px) {
+    #faq {
+      padding: 6rem 4rem;
+    }
+
+    .faq-inner {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 6rem;
+    }
+
+    .pregunta:hover {
+      color: var(--red);
+    }
+
+    .header {
+      width: 340px;
+      position: static;
+    }
+
+    h2 {
+      font-size: 5rem;
+    }
+
+    .items {
+      flex: 1;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".item").forEach((item) => {
+    const btn = item.querySelector(".pregunta");
+    btn?.addEventListener("click", () => {
+      const isOpen = item.classList.contains("open");
+      document.querySelectorAll(".item").forEach((i) => {
+        i.classList.remove("open");
+        i.querySelector(".pregunta")?.setAttribute("aria-expanded", "false");
+      });
+      if (!isOpen) {
+        item.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+    });
+  });
+</script>

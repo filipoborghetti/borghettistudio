@@ -1,0 +1,586 @@
+---
+import { casos } from "../../data/casos";
+---
+
+<section id="casos">
+  <div class="texture"></div>
+  <div class="glow-top"></div>
+
+  <div class="inner">
+    <div class="header" data-animate>
+      <p class="eyebrow">Casos de estudio</p>
+      <h2>Resultados reales,<br />para artistas reales.</h2>
+    </div>
+
+    <div class="cards" data-animate data-animate-delay="2">
+      {
+        casos.map((caso) => (
+          <div class="card">
+            <div class="card-media">
+              <img
+                src={caso.screenshot}
+                alt={`Web de ${caso.nombre}`}
+                class="screenshot"
+                loading="lazy"
+                decoding="async"
+              />
+              <video
+                class="hover-video"
+                src={caso.video}
+                preload="none"
+                loop
+                muted
+                playsinline
+              />
+              <div class="media-overlay" />
+              <div class="media-tag">
+                <span class="live-dot" />
+                Web activa
+              </div>
+            </div>
+
+            <div class="card-info">
+              <div class="card-top">
+                <div>
+                  <span class="artist-tag">{caso.tag}</span>
+                  <h3>{caso.nombre}</h3>
+                </div>
+                <div class="social-icons">
+                  <a
+                    href={caso.instagram}
+                    target="_blank"
+                    aria-label="Instagram"
+                  >
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle
+                        cx="17.5"
+                        cy="6.5"
+                        r="1"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                  </a>
+                  <a href={caso.spotify} target="_blank" aria-label="Spotify">
+                    <svg
+                      width="18"
+                      height="18"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                    </svg>
+                  </a>
+                </div>
+              </div>
+
+              <p class="card-desc">{caso.descripcion}</p>
+
+              <div class="metrics">
+                <div class="metric">
+                  <span class="metric-num">{caso.seguidores}</span>
+                  <span class="metric-label">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
+                      <circle cx="12" cy="12" r="4" />
+                      <circle
+                        cx="17.5"
+                        cy="6.5"
+                        r="1"
+                        fill="currentColor"
+                        stroke="none"
+                      />
+                    </svg>
+                    Seguidores
+                  </span>
+                </div>
+                <div class="metric-divider" />
+                <div class="metric">
+                  <span class="metric-num">{caso.oyentes}</span>
+                  <span class="metric-label">
+                    <svg
+                      width="12"
+                      height="12"
+                      viewBox="0 0 24 24"
+                      fill="currentColor"
+                    >
+                      <path d="M12 0C5.4 0 0 5.4 0 12s5.4 12 12 12 12-5.4 12-12S18.66 0 12 0zm5.521 17.34c-.24.359-.66.48-1.021.24-2.82-1.74-6.36-2.101-10.561-1.141-.418.122-.779-.179-.899-.539-.12-.421.18-.78.54-.9 4.56-1.021 8.52-.6 11.64 1.32.42.18.479.659.301 1.02zm1.44-3.3c-.301.42-.841.6-1.262.3-3.239-1.98-8.159-2.58-11.939-1.38-.479.12-1.02-.12-1.14-.6-.12-.48.12-1.021.6-1.141C9.6 9.9 15 10.561 18.72 12.84c.361.181.54.78.241 1.2zm.12-3.36C15.24 8.4 8.82 8.16 5.16 9.301c-.6.179-1.2-.181-1.38-.721-.18-.601.18-1.2.72-1.381 4.26-1.26 11.28-1.02 15.721 1.621.539.3.719 1.02.419 1.56-.299.421-1.02.599-1.559.3z" />
+                    </svg>
+                    Oyentes mensuales
+                  </span>
+                </div>
+              </div>
+
+              <div class="cta-group">
+                <a href={caso.urlWeb} target="_blank" class="btn-primary">
+                  Ver web
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  >
+                    <path d="M15 3h6v6" />
+                    <path d="M10 14 21 3" />
+                    <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
+                  </svg>
+                </a>
+                <a href={caso.urlCaso} class="btn-secondary">
+                  Ver caso completo
+                </a>
+              </div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+
+    <div class="bottom-cta" data-animate data-animate-delay="1">
+      <a href="#precios" class="btn-contacto">
+        Ver precios <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-arrow-big-down-dash-icon lucide-arrow-big-down-dash"
+          ><path
+            d="M14 8a1 1 0 0 1 1 1v2a1 1 0 0 0 1 1h3.293a.707.707 0 0 1 .5 1.207l-6.939 6.939a1.207 1.207 0 0 1-1.708 0l-6.94-6.94a.707.707 0 0 1 .5-1.206H8a1 1 0 0 0 1-1V9a1 1 0 0 1 1-1z"
+          ></path><path d="M9 4h6"></path></svg
+        ></a
+      >
+      <a href="/portafolio" class="btn-ver-todos">Ver todos los casos</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  #casos {
+    position: relative;
+    padding: 4rem 1.5rem;
+    background: #0a0a0a;
+    overflow: hidden;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .glow-top {
+    position: absolute;
+    top: -150px;
+    right: -150px;
+    width: 700px;
+    height: 700px;
+    background: radial-gradient(
+      circle,
+      rgba(232, 33, 59, 0.07) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .header {
+    margin-bottom: 2.5rem;
+    text-align: left;
+  }
+
+  .eyebrow {
+    font-size: 0.8rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 0.5rem;
+  }
+
+  h2 {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    margin-bottom: 1.25rem;
+  }
+
+  .cards {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .card {
+    display: flex;
+    flex-direction: column;
+    border: 0.5px solid rgba(240, 237, 230, 0.1);
+    border-radius: 16px;
+    overflow: hidden;
+    background: #0f0f0f;
+    transition:
+      border-color 0.3s ease,
+      box-shadow 0.3s ease;
+  }
+
+  .card:hover {
+    border-color: rgba(58, 58, 58, 0.671);
+    box-shadow: 0 0 40px rgba(75, 0, 10, 0.06);
+  }
+
+  .card-media {
+    position: relative;
+    aspect-ratio: 16/9;
+    overflow: hidden;
+    background: #1a1a1a;
+  }
+
+  .screenshot {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: opacity 0.4s ease;
+  }
+
+  .hover-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+
+  .card:hover .screenshot {
+    opacity: 0;
+  }
+  .card:hover .hover-video {
+    opacity: 1;
+  }
+
+  .media-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to top,
+      rgba(15, 15, 15, 0.6) 0%,
+      transparent 50%
+    );
+    pointer-events: none;
+  }
+
+  .media-tag {
+    position: absolute;
+    bottom: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--cream);
+    background: rgba(15, 15, 15, 0.7);
+    backdrop-filter: blur(8px);
+    border: 0.5px solid rgba(240, 237, 230, 0.15);
+    padding: 0.35rem 0.75rem;
+    border-radius: 100px;
+  }
+
+  .live-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #22c55e;
+    animation: pulse 2s ease-in-out infinite;
+  }
+
+  @keyframes pulse {
+    0%,
+    100% {
+      opacity: 1;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .card-info {
+    padding: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+
+  .card-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+
+  .artist-tag {
+    font-size: 0.7rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    display: block;
+    margin-bottom: 0.4rem;
+  }
+
+  h3 {
+    font-family: var(--font-display);
+    font-size: 2.3rem;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+  }
+
+  .social-icons {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social-icons a {
+    color: rgba(240, 237, 230, 0.4);
+    transition: color 0.2s ease;
+  }
+
+  .social-icons a:hover {
+    color: var(--cream);
+  }
+
+  .card-desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .metrics {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.25rem 0;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .metric-divider {
+    width: 0.5px;
+    height: 36px;
+    background: rgba(240, 237, 230, 0.1);
+  }
+
+  .metric-num {
+    display: block;
+    font-family: var(--font-display);
+    font-size: 2rem;
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1;
+    margin-bottom: 0.35rem;
+  }
+
+  .metric-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    font-size: 0.7rem;
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .cta-group {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--cream);
+    border: 0.5px solid var(--cream);
+    color: var(--black);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    width: fit-content;
+    transition: opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.85;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 0.5px solid rgba(240, 237, 230, 0.2);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    width: fit-content;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    background: rgba(255, 255, 255, 0.815);
+    border-color: rgba(255, 255, 255, 0.815);
+    color: black;
+  }
+
+  .bottom-cta {
+    margin-top: 2.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .btn-contacto {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 0.75rem 2rem;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(232, 33, 59, 0.4);
+    transition:
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .btn-contacto:hover {
+    opacity: 0.85;
+    box-shadow: 0 0 35px rgba(232, 33, 59, 0.7);
+  }
+
+  .btn-ver-todos {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: transparent;
+    border: 0.5px solid rgba(240, 237, 230, 0.2);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.85rem;
+    padding: 0.75rem 1.25rem;
+    border-radius: 6px;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease;
+  }
+
+  .btn-ver-todos:hover {
+    background: rgba(240, 237, 230, 0.06);
+    border-color: rgba(240, 237, 230, 0.4);
+  }
+
+  @media (min-width: 768px) {
+    #casos {
+      padding: 6rem 4rem;
+    }
+
+    h2 {
+      font-size: 3rem;
+    }
+
+    .card {
+      flex-direction: row;
+    }
+
+    .card-media {
+      width: 55%;
+      aspect-ratio: auto;
+      min-height: 400px;
+      flex-shrink: 0;
+    }
+
+    .card-info {
+      padding: 2.5rem;
+      justify-content: space-between;
+    }
+
+    .bottom-cta {
+      flex-direction: row;
+      align-items: center;
+      gap: 1rem;
+      margin-top: 3rem;
+    }
+  }
+</style>
+
+<script>
+  document.querySelectorAll(".card").forEach((card) => {
+    const video = card.querySelector(".hover-video") as HTMLVideoElement;
+    card.addEventListener("mouseenter", () => {
+      if (video) {
+        video.currentTime = 0;
+        video.play();
+      }
+    });
+    card.addEventListener("mouseleave", () => video?.pause());
+  });
+</script>

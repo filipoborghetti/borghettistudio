@@ -1,0 +1,111 @@
+@import "tailwindcss";
+
+:root {
+  --black: #080808;
+  --cream: #f0ede6;
+  --red: #e8213b;
+  --surface: #111111;
+  --muted: rgba(240, 237, 230, 0.4);
+  --font-display: "Cabinet Grotesk", sans-serif;
+  --font-body: "Satoshi", sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  background: var(--black);
+  color: var(--cream);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  scroll-behavior: smooth;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+::selection {
+  background: var(--red);
+  color: var(--cream);
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: #080808;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(240, 237, 230, 0.15);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(240, 237, 230, 0.3);
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
+}
+
+[data-animate="fade"] {
+  transform: none;
+}
+
+[data-animate="left"] {
+  transform: translateX(-24px);
+}
+
+[data-animate="right"] {
+  transform: translateX(24px);
+}
+
+[data-animate].visible {
+  opacity: 1;
+  transform: none;
+}
+
+[data-animate-delay="1"] {
+  transition-delay: 0.1s;
+}
+[data-animate-delay="2"] {
+  transition-delay: 0.2s;
+}
+[data-animate-delay="3"] {
+  transition-delay: 0.3s;
+}
+[data-animate-delay="4"] {
+  transition-delay: 0.4s;
+}
+[data-animate-delay="5"] {
+  transition-delay: 0.5s;
+}

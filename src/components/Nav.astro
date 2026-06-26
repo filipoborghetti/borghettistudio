@@ -1,0 +1,490 @@
+---
+const links = [
+  { href: "/servicios", label: "Servicios" },
+  { href: "/portafolio", label: "Portafolio" },
+  { href: "/proceso", label: "Proceso" },
+  { href: "/precios", label: "Precios" },
+];
+
+const currentPath = Astro.url.pathname;
+const isActive = (href: string) => {
+  const normalizedPath = currentPath.replace(/\/$/, "");
+  const normalizedHref = href.replace(/\/$/, "");
+  return normalizedPath === normalizedHref;
+};
+---
+
+<header id="nav">
+  <a href="/" class="logo">
+    <img
+      src="/logo.png"
+      alt="Borghetti Studio"
+      loading="eager"
+      decoding="async"
+    />
+  </a>
+
+  <nav id="desktop-nav">
+    {
+      links.map((link) => (
+        <a href={link.href} class={isActive(link.href) ? "active" : ""}>
+          {link.label}
+        </a>
+      ))
+    }
+    <a href="/contacto" class:list={["cta", { active: isActive("/contacto") }]}
+      >Contacto</a
+    >
+  </nav>
+
+  <button
+    id="hamburger"
+    aria-label="Abrir menú"
+    aria-expanded="false"
+    aria-controls="drawer"
+  >
+    <span></span>
+    <span></span>
+    <span></span>
+  </button>
+</header>
+
+<div id="backdrop"></div>
+
+<div
+  id="drawer"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Menú de navegación"
+>
+  <button id="close-btn" aria-label="Cerrar menú">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <path
+        d="M18 6L6 18M6 6l12 12"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"></path>
+    </svg>
+  </button>
+
+  <nav class="drawer-nav">
+    {
+      links.map((link) => (
+        <a href={link.href} class={isActive(link.href) ? "active" : ""}>
+          {link.label}
+        </a>
+      ))
+    }
+  </nav>
+
+  <a
+    href="/contacto"
+    class:list={["drawer-cta", { active: isActive("/contacto") }]}
+  >
+    Empezá tu proyecto
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+      <path
+        d="M3 13L13 3M13 3H6M13 3V10"
+        stroke="currentColor"
+        stroke-width="1.5"
+        stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+  </a>
+
+  <p class="drawer-tagline">Sitios web para artistas independientes.</p>
+</div>
+
+<style>
+  #nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.25rem 1.5rem;
+    transition:
+      padding 0.4s ease,
+      background 0.4s ease;
+  }
+
+  #nav.scrolled {
+    background: rgba(8, 8, 8, 0.9);
+    backdrop-filter: blur(16px);
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.06);
+  }
+  .logo img {
+    height: 40px;
+    width: auto;
+    display: block;
+  }
+
+  a:focus-visible,
+  button:focus-visible {
+    outline: 2px solid var(--red);
+    outline-offset: 3px;
+  }
+
+  #desktop-nav {
+    display: none;
+    align-items: center;
+    gap: 2.5rem;
+  }
+
+  #desktop-nav a {
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: rgba(240, 237, 230, 0.6);
+    transition: color 0.2s ease;
+  }
+
+  #desktop-nav a:not(.cta) {
+    position: relative;
+    padding: 0.25rem 0;
+  }
+
+  #desktop-nav a:not(.cta)::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1.5px;
+    background: var(--red);
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #desktop-nav a:not(.cta):hover::after,
+  #desktop-nav a:not(.cta).active::after {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+
+  #desktop-nav a:not(.cta):hover,
+  #desktop-nav a:not(.cta).active {
+    color: var(--cream);
+  }
+
+  #desktop-nav .cta {
+    color: var(--cream);
+    border: 0.5px solid rgba(240, 237, 230, 0.3);
+    padding: 0.5rem 1.25rem;
+    border-radius: 100px;
+    transition:
+      background 0.2s ease,
+      border-color 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  #desktop-nav .cta.active {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  #desktop-nav .cta:hover {
+    background: var(--red);
+    border-color: var(--red);
+  }
+
+  #hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 101;
+  }
+
+  #hamburger span {
+    display: block;
+    width: 24px;
+    height: 1.5px;
+    background: var(--cream);
+    transition:
+      transform 0.3s ease,
+      opacity 0.3s ease;
+    transform-origin: center;
+  }
+
+  #backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 199;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+  }
+
+  #backdrop.open {
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #drawer {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    width: min(340px, 85vw);
+    background: #0f0f0f;
+    border-left: 0.5px solid rgba(240, 237, 230, 0.08);
+    z-index: 200;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem 2rem 3rem;
+    transform: translateX(100%);
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  #drawer.open {
+    transform: translateX(0);
+  }
+
+  #close-btn {
+    align-self: flex-end;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: var(--cream);
+    padding: 4px;
+    margin-bottom: 3rem;
+    opacity: 0.6;
+    transition: opacity 0.2s ease;
+  }
+
+  #close-btn:hover {
+    opacity: 1;
+  }
+
+  .drawer-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+    flex: 1;
+  }
+
+  .drawer-nav a {
+    font-family: var(--font-display);
+    font-size: 1.75rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    color: rgba(240, 237, 230, 0.5);
+    text-transform: uppercase;
+    padding: 0.5rem 0;
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.06);
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.4s ease,
+      color 0.2s ease,
+      padding-left 0.2s ease;
+  }
+
+  #drawer.open .drawer-nav a {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  #drawer.open .drawer-nav a:nth-child(1) {
+    transition-delay: 0.1s;
+  }
+  #drawer.open .drawer-nav a:nth-child(2) {
+    transition-delay: 0.15s;
+  }
+  #drawer.open .drawer-nav a:nth-child(3) {
+    transition-delay: 0.2s;
+  }
+  #drawer.open .drawer-nav a:nth-child(4) {
+    transition-delay: 0.25s;
+  }
+
+  .drawer-nav a:last-child {
+    border-bottom: none;
+  }
+
+  .drawer-nav a:hover,
+  .drawer-nav a.active {
+    color: var(--cream);
+  }
+
+  .drawer-nav a.active {
+    padding-left: 0.5rem;
+  }
+
+  .drawer-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.875rem 1.5rem;
+    border-radius: 6px;
+    margin-top: 2.5rem;
+    width: fit-content;
+    opacity: 0;
+    transform: translateY(15px);
+    transition:
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.4s ease,
+      background-color 0.2s ease;
+  }
+
+  #drawer.open .drawer-cta {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.3s;
+  }
+
+  .drawer-cta:hover {
+    background-color: #d12c2c;
+  }
+
+  .drawer-tagline {
+    font-size: 0.72rem;
+    color: rgba(240, 237, 230, 0.25);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-top: 1.5rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition:
+      transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+      opacity 0.4s ease;
+  }
+
+  #drawer.open .drawer-tagline {
+    opacity: 1;
+    transform: translateY(0);
+    transition-delay: 0.35s;
+  }
+
+  @media (min-width: 768px) {
+    #nav {
+      padding: 1.6rem 3.5rem;
+    }
+
+    #nav.scrolled {
+      padding: 1rem 3.5rem;
+    }
+
+    .logo img {
+      height: 40px;
+      width: auto;
+      display: block;
+    }
+
+    #desktop-nav {
+      display: flex;
+    }
+
+    #hamburger {
+      display: none;
+    }
+
+    #drawer,
+    #backdrop {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const hamburger = document.getElementById("hamburger");
+  const drawer = document.getElementById("drawer");
+  const backdrop = document.getElementById("backdrop");
+  const closeBtn = document.getElementById("close-btn");
+  const nav = document.getElementById("nav");
+  const SCROLL_THRESHOLD = 50;
+
+  // Handle trailing slashes in pathname check
+  const pathname = window.location.pathname.replace(/\/$/, "");
+  const isHome = pathname === "" || pathname === "/";
+
+  if (!isHome) {
+    nav?.classList.add("scrolled");
+  } else {
+    const updateNav = () => {
+      nav?.classList.toggle("scrolled", window.scrollY > SCROLL_THRESHOLD);
+    };
+    window.addEventListener("scroll", updateNav, { passive: true });
+    updateNav();
+  }
+
+  function handleKeydown(e: KeyboardEvent) {
+    if (e.key === "Escape") {
+      closeMenu();
+      return;
+    }
+
+    if (e.key === "Tab") {
+      const focusableElements = drawer?.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled]), [tabindex="0"]',
+      );
+      if (!focusableElements || focusableElements.length === 0) return;
+
+      const firstElement = focusableElements[0];
+      const lastElement = focusableElements[focusableElements.length - 1];
+
+      if (e.shiftKey) {
+        if (document.activeElement === firstElement) {
+          lastElement.focus();
+          e.preventDefault();
+        }
+      } else {
+        if (document.activeElement === lastElement) {
+          firstElement.focus();
+          e.preventDefault();
+        }
+      }
+    }
+  }
+
+  function openMenu() {
+    drawer?.classList.add("open");
+    backdrop?.classList.add("open");
+    hamburger?.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+
+    // Set focus to the first focusable element inside the drawer (closeBtn)
+    closeBtn?.focus();
+
+    // Add escape key and tab trap listener
+    document.addEventListener("keydown", handleKeydown);
+  }
+
+  function closeMenu() {
+    drawer?.classList.remove("open");
+    backdrop?.classList.remove("open");
+    hamburger?.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+
+    // Return focus to the toggle button
+    hamburger?.focus();
+
+    // Clean up keydown listener
+    document.removeEventListener("keydown", handleKeydown);
+  }
+
+  hamburger?.addEventListener("click", openMenu);
+  closeBtn?.addEventListener("click", closeMenu);
+  backdrop?.addEventListener("click", closeMenu);
+
+  drawer?.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeMenu);
+  });
+</script>

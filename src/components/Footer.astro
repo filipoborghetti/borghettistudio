@@ -1,0 +1,265 @@
+---
+const links = [
+  { label: "Portafolio", href: "/portafolio" },
+  { label: "Casos de estudio", href: "/casos" },
+  { label: "Proceso", href: "/proceso" },
+  { label: "Precios", href: "/precios" },
+];
+---
+
+<footer id="footer">
+  <div class="footer-inner">
+    <div class="footer-top">
+      <div class="col-brand">
+        <a href="/" class="logo">
+          <img
+            src="/logo.png"
+            alt="Borghetti Studio"
+            loading="lazy"
+            decoding="async"
+          />
+        </a>
+        <p class="tagline">Sitios web para artistas independientes.</p>
+        <div class="social">
+          <a
+            href="https://instagram.com/borghettistudio"
+            target="_blank"
+            aria-label="Instagram"
+          >
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+              <circle cx="12" cy="12" r="4"></circle>
+              <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"
+              ></circle>
+            </svg>
+          </a>
+          <a
+            href="https://github.com/borghettistudio"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="GitHub"
+          >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              ></path>
+            </svg>
+          </a>
+        </div>
+      </div>
+      <div class="col-group">
+        <div class="col">
+          <p class="col-title">Legal</p>
+          <ul>
+            <li>
+              <a href="/privacidad">Política de privacidad</a>
+            </li>
+            <li>
+              <a href="/terminos">Términos y condiciones</a>
+            </li>
+          </ul>
+        </div>
+        <div class="col">
+          <p class="col-title">Estudio</p>
+          <ul>
+            {
+              links.map((l) => (
+                <li>
+                  <a href={l.href}>{l.label}</a>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+
+        <div class="col">
+          <p class="col-title">Contacto</p>
+          <ul>
+            <li>
+              <a href="mailto:borghettistudioo@gmail.com"
+                >borghettistudioo@gmail.com</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://instagram.com/borghettistudio"
+                target="_blank"
+                rel="noopener noreferrer">@borghettistudio</a
+              >
+            </li>
+            <li><a href="/contacto">Formulario de contacto</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>
+        © {new Date().getFullYear()} Borghetti Studio.
+      </p>
+      <p class="made-by">
+        Hecho con <span>
+          <svg
+            width="12"
+            height="12"
+            viewBox="0 0 24 24"
+            fill="#e8213b"
+            stroke="none"
+          >
+            <path
+              d="M2 9.5a5.5 5.5 0 0 1 9.591-3.676.56.56 0 0 0 .818 0A5.49 5.49 0 0 1 22 9.5c0 2.29-1.5 4-3 5.5l-5.492 5.313a2 2 0 0 1-3 .019L5 15c-1.5-1.5-3-3.2-3-5.5"
+            ></path>
+          </svg>
+        </span> en Artigas, Uruguay
+      </p>
+    </div>
+  </div>
+</footer>
+
+<style>
+  #footer {
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    background: #080808;
+    padding: 3rem 1.5rem 2rem;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .footer-top {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .col-brand .logo {
+    display: inline-flex;
+    width: fit-content;
+    margin-bottom: 1rem;
+  }
+
+  .col-brand .logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .tagline {
+    font-size: 0.85rem;
+    color: var(--muted);
+    line-height: 1.6;
+    max-width: 320px;
+    margin-bottom: 1.25rem;
+  }
+
+  .social {
+    display: flex;
+    gap: 0.75rem;
+  }
+
+  .social a {
+    color: rgba(240, 237, 230, 0.4);
+    transition: color 0.2s ease;
+  }
+
+  .social a:hover {
+    color: var(--cream);
+  }
+
+  .col-group {
+    display: grid;
+    gap: 1.5rem;
+  }
+
+  .col-title {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--cream);
+    margin-bottom: 1rem;
+  }
+
+  .col ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+
+  .col ul a {
+    font-size: 0.85rem;
+    color: var(--muted);
+    transition: color 0.2s ease;
+  }
+
+  .col ul a:hover {
+    color: var(--cream);
+  }
+
+  .footer-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding-top: 2rem;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.06);
+  }
+
+  .footer-bottom p {
+    font-size: 0.75rem;
+    color: rgba(240, 237, 230, 0.25);
+  }
+
+  .made-by span {
+    display: inline-flex;
+    align-items: center;
+    vertical-align: middle;
+  }
+
+  .made-by svg {
+    vertical-align: middle;
+    margin: 0 2px;
+    position: relative;
+    top: -1px;
+  }
+
+  @media (min-width: 768px) {
+    #footer {
+      padding: 4rem 4rem 2.5rem;
+    }
+
+    .footer-top {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 4rem;
+    }
+
+    .col-brand {
+      flex: 1.5;
+    }
+
+    .col-group {
+      flex: 2;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .footer-bottom {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+</style>

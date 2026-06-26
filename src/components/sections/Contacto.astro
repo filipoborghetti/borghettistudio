@@ -1,0 +1,413 @@
+---
+
+---
+
+<section id="contacto">
+  <div class="texture"></div>
+  <div class="grid-bg"></div>
+  <div class="glow"></div>
+
+  <div class="contacto-inner">
+    <div class="header" data-animate="left">
+      <p class="eyebrow">Contacto</p>
+      <h2>
+        Hablemos de <em><span class="glow-text"> TU PROYECTO.</span></em>
+      </h2>
+      <p class="desc">Te respondemos en menos de 24 horas.</p>
+    </div>
+
+    <form id="contacto-form" class="form" data-animate="right">
+      <input
+        type="text"
+        name="website"
+        tabindex="-1"
+        autocomplete="off"
+        aria-hidden="true"
+        style="display:none"
+      />
+      <div class="field">
+        <label for="nombre">Nombre</label>
+        <input
+          type="text"
+          id="nombre"
+          name="nombre"
+          placeholder="Tu nombre"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          placeholder="tu@email.com"
+          required
+        />
+      </div>
+
+      <div class="field">
+        <label for="instagram"
+          >Instagram <span class="opcional">(opcional)</span></label
+        >
+        <div class="input-prefix">
+          <span>@</span>
+          <input
+            type="text"
+            id="instagram"
+            name="instagram"
+            placeholder="tuusuario"
+            pattern="^[a-zA-Z0-9._]{1,30}$"
+            maxlength="30"
+            title="Solo letras, números, puntos y guiones bajos. Máximo 30 caracteres."
+          />
+        </div>
+      </div>
+
+      <div class="field">
+        <label for="mensaje">Mensaje</label>
+        <textarea
+          id="mensaje"
+          name="mensaje"
+          placeholder="Contanos sobre tu proyecto..."
+          rows="4"
+          required></textarea>
+      </div>
+
+      <button type="submit" class="submit" id="submit-btn">
+        <span id="btn-text">Enviar mensaje</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-send-horizontal-icon lucide-send-horizontal"
+          ><path
+            d="M3.714 3.048a.498.498 0 0 0-.683.627l2.843 7.627a2 2 0 0 1 0 1.396l-2.842 7.627a.498.498 0 0 0 .682.627l18-8.5a.5.5 0 0 0 0-.904z"
+          ></path><path d="M6 12h16"></path></svg
+        >
+      </button>
+
+      <p id="form-status" class="status"></p>
+    </form>
+  </div>
+</section>
+
+<style>
+  #contacto {
+    position: relative;
+    padding: 4rem 1.5rem;
+    background: #0d0d0d;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    overflow: hidden;
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(240, 237, 230, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(240, 237, 230, 0.04) 1px, transparent 1px);
+    background-size: 200px 200px;
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glow {
+    position: absolute;
+    top: -100px;
+    right: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(232, 33, 59, 0.08) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .glow-text {
+    text-shadow:
+      0 0 40px rgba(232, 33, 59, 0.4),
+      0 0 80px rgba(232, 33, 59, 0.1);
+  }
+
+  .contacto-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 3rem;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  h2 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: 3.5rem;
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 0.95;
+    margin-bottom: 1.5rem;
+  }
+
+  h2 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .desc {
+    font-size: 0.9rem;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  label {
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: rgba(240, 237, 230, 0.5);
+  }
+
+  .opcional {
+    font-size: 0.65rem;
+    color: rgba(240, 237, 230, 0.25);
+    font-weight: 400;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+
+  input,
+  textarea {
+    background: rgba(240, 237, 230, 0.04);
+    border: 0.5px solid rgba(240, 237, 230, 0.12);
+    border-radius: 8px;
+    padding: 0.875rem 1rem;
+    color: var(--cream);
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    width: 100%;
+    transition: border-color 0.2s ease;
+    outline: none;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: rgba(240, 237, 230, 0.25);
+  }
+
+  input:focus,
+  textarea:focus {
+    border-color: rgba(232, 33, 59, 0.5);
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .input-prefix {
+    display: flex;
+    align-items: center;
+    background: rgba(240, 237, 230, 0.04);
+    border: 0.5px solid rgba(240, 237, 230, 0.12);
+    border-radius: 8px;
+    transition: border-color 0.2s ease;
+  }
+
+  .input-prefix:focus-within {
+    border-color: rgba(232, 33, 59, 0.5);
+  }
+
+  .input-prefix span {
+    padding: 0 0.75rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+    border-right: 0.5px solid rgba(240, 237, 230, 0.1);
+  }
+
+  .input-prefix input {
+    border: none;
+    background: transparent;
+    border-radius: 0 8px 8px 0;
+  }
+
+  .input-prefix input:focus {
+    border-color: transparent;
+  }
+
+  .submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.95rem;
+    padding: 1rem 2rem;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 0 20px rgba(232, 33, 59, 0.4);
+    transition:
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+    width: 100%;
+  }
+
+  .submit:hover {
+    opacity: 0.85;
+    box-shadow: 0 0 35px rgba(232, 33, 59, 0.7);
+  }
+
+  .submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+
+  .status {
+    font-size: 0.85rem;
+    text-align: center;
+    min-height: 1.2rem;
+  }
+
+  .status.success {
+    color: #22c55e;
+  }
+  .status.error {
+    color: var(--red);
+  }
+
+  @media (min-width: 768px) {
+    #contacto {
+      padding: 6rem 4rem;
+    }
+
+    .contacto-inner {
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 6rem;
+    }
+
+    .header {
+      flex-shrink: 0;
+      width: 320px;
+      position: sticky;
+      top: 8rem;
+    }
+
+    h2 {
+      font-size: 5rem;
+    }
+
+    .form {
+      flex: 1;
+    }
+
+    .submit {
+      width: fit-content;
+      min-width: 200px;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById("contacto-form") as HTMLFormElement;
+  const btn = document.getElementById("submit-btn") as HTMLButtonElement;
+  const btnText = document.getElementById("btn-text") as HTMLSpanElement;
+  const status = document.getElementById("form-status") as HTMLParagraphElement;
+
+  form?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    btn.disabled = true;
+    btnText.textContent = "Enviando...";
+    status.textContent = "";
+    status.className = "status";
+
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contacto", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          nombre: formData.get("nombre"),
+          email: formData.get("email"),
+          instagram: formData.get("instagram"),
+          mensaje: formData.get("mensaje"),
+          website: formData.get("website"),
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 429) {
+        status.textContent =
+          "Ya nos enviaste varios mensajes. Esperá un rato y volvé a intentarlo, o escribinos directo por Instagram.";
+        status.classList.add("error");
+        btn.disabled = false;
+        btnText.textContent = "Enviar mensaje";
+        return;
+      }
+
+      if (res.ok) {
+        status.textContent = "¡Mensaje enviado! Te respondemos pronto.";
+        status.classList.add("success");
+        form.reset();
+      } else {
+        throw new Error(data.error);
+      }
+    } catch {
+      status.textContent =
+        "Hubo un error. Intentá de nuevo o escribinos por Instagram.";
+      status.classList.add("error");
+    } finally {
+      btn.disabled = false;
+      btnText.textContent = "Enviar mensaje";
+    }
+  });
+</script>

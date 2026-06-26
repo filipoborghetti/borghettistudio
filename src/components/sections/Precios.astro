@@ -1,0 +1,338 @@
+---
+import CheckIcon from "../icons/CheckIcon.astro";
+---
+
+<section id="precios">
+  <div class="texture"></div>
+  <div class="grid-bg"></div>
+  <div class="glow glow-left"></div>
+  <div class="glow glow-right"></div>
+  <div class="precios-inner">
+    <div class="col-left" data-animate="left">
+      <p class="eyebrow">Precios</p>
+      <h2>
+        UN SITIO WEB QUE REALMENTE
+        <em><span class="glow-text"> TE PERTENECE.</span></em>
+      </h2>
+      <p class="desc">
+        Ni plantillas, ni WordPress. Una web hecha 100% para vos.
+      </p>
+
+      <div class="pills">
+        <span class="pill">Diseño 100% personalizado</span>
+        <span class="pill">Sin templates</span>
+        <span class="pill">SEO optimizado</span>
+        <span class="pill">Mobile first</span>
+        <span class="pill">Panel de gestión propio</span>
+        <span class="pill">Hosting incluido</span>
+      </div>
+    </div>
+
+    <div class="col-right" data-animate="right">
+      <div class="price-card">
+        <div class="price-header">
+          <div class="price">
+            <span class="from">DESDE</span>
+            <span class="amount">300USD</span>
+          </div>
+          <p class="price-sub">+ USD 250/año para mantener tu sitio activo</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <ul>
+          <li>
+            <CheckIcon />
+            Diseño y desarrollo completo
+          </li>
+          <li>
+            <CheckIcon />
+            Biografía indexada en Google
+          </li>
+          <li>
+            <CheckIcon />
+            Shows, lanzamientos, galería, EPK, redes, etc.
+          </li>
+          <li>
+            <CheckIcon />
+            Actualizá tu web sin depender nuestro
+          </li>
+          <li>
+            <CheckIcon />
+            Hosting + dominio + SSL
+          </li>
+          <li>
+            <CheckIcon />
+            Soporte y actualizaciones
+          </li>
+        </ul>
+
+        <a href="/contacto" class="cta">
+          Empezá tu proyecto
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M3 13L13 3M13 3H6M13 3V10"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+
+        <p class="nota">
+          La mayoría de los proyectos entran dentro de este rango. Te enviamos
+          una propuesta personalizada en menos de 24 horas.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    #precios {
+      position: relative;
+      padding: 4rem 1.5rem;
+      border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+      background: #0d0d0d;
+      overflow: hidden;
+    }
+
+    .glow-text {
+      text-shadow:
+        0 0 40px rgba(232, 33, 59, 0.4),
+        0 0 80px rgba(232, 33, 59, 0.1);
+    }
+
+    .glow-left {
+      position: absolute;
+      top: -20%;
+      left: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(
+        circle,
+        rgba(232, 33, 59, 0.15) 0%,
+        transparent 70%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .glow-right {
+      position: absolute;
+      bottom: -20%;
+      right: -10%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(
+        circle,
+        rgba(232, 33, 59, 0.1) 0%,
+        transparent 70%
+      );
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .texture {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.92' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+      background-repeat: repeat;
+      background-size: 300px 300px;
+    }
+
+    .grid-bg {
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(240, 237, 230, 0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(240, 237, 230, 0.04) 1px, transparent 1px);
+      background-size: 150px 150px;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .precios-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    .eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      font-family: "Barlow Condensed", sans-serif;
+      font-size: 3.5rem;
+      font-weight: 800;
+      letter-spacing: -0.01em;
+      color: var(--cream);
+      text-transform: uppercase;
+      line-height: 0.95;
+      margin-bottom: 1.5rem;
+    }
+
+    h2 em {
+      font-style: italic;
+      color: var(--red);
+    }
+
+    .desc {
+      font-size: 0.95rem;
+      color: var(--muted);
+      line-height: 1.7;
+      margin-bottom: 2rem;
+      max-width: 420px;
+    }
+
+    .pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+
+    .pill {
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--cream);
+      background: rgba(240, 237, 230, 0.06);
+      border: 0.5px solid rgba(240, 237, 230, 0.15);
+      padding: 0.4rem 1rem;
+      border-radius: 100px;
+      letter-spacing: 0.02em;
+    }
+
+    .price-card {
+      background: #0f0f0f;
+      border: 0.5px solid rgba(240, 237, 230, 0.1);
+      border-radius: 3px;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.25rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .from {
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 500;
+      color: var(--muted);
+    }
+
+    .amount {
+      font-family: var(--font-display);
+      font-size: 3.7rem;
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .price-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    .divider {
+      height: 0.5px;
+      background: rgba(240, 237, 230, 0.08);
+    }
+
+    .price-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .price-card ul li {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-size: 0.9rem;
+      color: rgba(240, 237, 230, 0.7);
+    }
+
+    .price-card ul li svg {
+      flex-shrink: 0;
+    }
+
+    .cta {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      background: var(--red);
+      color: var(--cream);
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 0.9rem;
+      padding: 1rem 1.75rem;
+      border-radius: 6px;
+      box-shadow: 0 0 20px rgba(232, 33, 59, 0.4);
+      transition:
+        box-shadow 0.2s ease,
+        opacity 0.2s ease;
+      text-align: center;
+    }
+
+    .cta:hover {
+      opacity: 0.85;
+      box-shadow: 0 0 35px rgba(232, 33, 59, 0.7);
+    }
+
+    .nota {
+      font-size: 0.75rem;
+      color: rgba(240, 237, 230, 0.25);
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    @media (max-width: 767px) {
+      .cta {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      #precios {
+        padding: 6rem 4rem;
+      }
+
+      .precios-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 6rem;
+      }
+
+      .col-left {
+        flex: 1;
+      }
+
+      .col-right {
+        flex: 1;
+      }
+
+      h2 {
+        font-size: 5rem;
+      }
+    }
+  </style>
+</section>
