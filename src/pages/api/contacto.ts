@@ -1,4 +1,6 @@
-import "dotenv/config";
+if (!process.env.DISCORD_WEBHOOK_URL) {
+  import("dotenv/config");
+}
 
 export const prerender = false;
 
