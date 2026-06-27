@@ -35,7 +35,7 @@ export const casos: Caso[] = [
     spotify: "https://open.spotify.com/intl-es/artist/2DB4gqzMQy1kvcHWgrNUgp",
     seguidores: "+30K",
     oyentes: "+190K",
-    screenshot: "/images/casos/one-flyt/screenshot.png",
+    screenshot: "/images/casos/one-flyt/screenshots/screenshot.png",
     video: "/images/casos/one-flyt/scroll.mp4",
     urlWeb: "https://oneflyt.vercel.app",
     urlCaso: "/portafolio/one-flyt",
