@@ -1,0 +1,235 @@
+---
+import Base from "../layouts/Base.astro";
+import Precios from "../components/sections/Precios.astro";
+---
+
+<Base
+  title="Precios"
+  description="Inversión clara, sin sorpresas. Sitios web desde 300USD para artistas independientes."
+>
+  <main class="precios-page">
+    <section class="hero">
+      <div class="texture"></div>
+      <div class="glow"></div>
+
+      <div class="hero-inner">
+        <div class="hero-text" data-animate>
+          <p class="eyebrow">Inversión</p>
+          <h1>
+            Precios <em>claros.</em>
+          </h1>
+          <p class="desc">
+            Una inversión única. Sin cuotas ocultas, sin renovaciones
+            obligatorias. Pagás una vez y la web es tuya para siempre.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <Precios />
+
+    <section class="cta-section">
+      <div class="texture"></div>
+      <div class="glow"></div>
+      <div class="cta-inner" data-animate>
+        <div class="cta-text">
+          <p class="eyebrow">¿Listo para arrancar?</p>
+          <h2>Tu próxima web empieza<br />con un mensaje.</h2>
+        </div>
+        <a href="/contacto" class="btn-primary">
+          Hablemos
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+            <path
+              d="M3 13L13 3M13 3H6M13 3V10"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"></path>
+          </svg>
+        </a>
+      </div>
+    </section>
+  </main>
+</Base>
+
+<style>
+  .precios-page {
+    background: var(--black);
+  }
+
+  .hero {
+    position: relative;
+    padding: 10rem 1.5rem 5rem;
+    overflow: hidden;
+    border-bottom: 0.5px solid rgba(240, 237, 230, 0.08);
+  }
+
+  .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .glow {
+    position: absolute;
+    top: -200px;
+    left: -100px;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(232, 33, 59, 0.1) 0%,
+      transparent 65%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--red);
+    margin-bottom: 1rem;
+  }
+
+  h1 {
+    font-family: "Barlow Condensed", sans-serif;
+    font-size: clamp(3.5rem, 10vw, 6rem);
+    font-weight: 800;
+    letter-spacing: -0.01em;
+    color: var(--cream);
+    text-transform: uppercase;
+    line-height: 0.92;
+    margin-bottom: 1.25rem;
+  }
+
+  h1 em {
+    font-style: italic;
+    color: var(--red);
+  }
+
+  .desc {
+    font-size: 0.95rem;
+    color: var(--muted);
+    line-height: 1.7;
+    max-width: 520px;
+  }
+
+  .cta-section {
+    overflow: hidden;
+    position: relative;
+    border-top: 0.5px solid rgba(240, 237, 230, 0.08);
+    background: #0a0a0a;
+    padding: 4rem 1.5rem 6rem;
+  }
+
+  .cta-section::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      to bottom,
+      transparent 0%,
+      transparent 40%,
+      #080808 100%
+    );
+    pointer-events: none;
+  }
+
+  .cta-section .texture {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 300px 300px;
+  }
+
+  .cta-section .glow {
+    position: absolute;
+    top: 50%;
+    left: 45%;
+    transform: translate(-50%, -50%);
+    width: 450px;
+    height: 300px;
+    background: radial-gradient(
+      ellipse,
+      rgba(232, 33, 59, 0.12) 0%,
+      transparent 70%
+    );
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .cta-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2rem;
+    position: relative;
+    z-index: 1;
+  }
+
+  .cta-text h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    font-weight: 800;
+    color: var(--cream);
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: var(--red);
+    color: var(--cream);
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 0.9rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 6px;
+    box-shadow: 0 0 20px rgba(232, 33, 59, 0.35);
+    z-index: 1;
+    transition:
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+
+  .btn-primary:hover {
+    opacity: 0.9;
+    box-shadow: 0 0 35px rgba(232, 33, 59, 0.55);
+  }
+
+  @media (min-width: 768px) {
+    .hero {
+      padding: 12rem 4rem 6rem;
+    }
+
+    .cta-section {
+      padding: 5rem 4rem 8rem;
+    }
+
+    .cta-inner {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+    }
+  }
+</style>
