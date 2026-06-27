@@ -180,11 +180,13 @@ export async function POST({
     );
   }
 
-  const text = `📩 Nuevo contacto de ${nombre} (${email}${instagram ? `, @${instagram}` : ""}):\n\n${mensaje}`;
+  const text = `📩 Nuevo contacto de ${nombre} (${email}${instagram ? `, https://instagram.com/${instagram})` : ""}:\n\n${mensaje}`;
 
   const discordUrl = (import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || "").trim();
   const botToken = import.meta.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN || "";
   const chatId = import.meta.env.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || "";
+
+  console.log("[contacto] Env vars:", { discordUrl: !!discordUrl, botToken: !!botToken, chatId: !!chatId });
 
   const errors: string[] = [];
 
