@@ -1,6 +1,4 @@
-if (!process.env.DISCORD_WEBHOOK_URL) {
-  import("dotenv/config");
-}
+import "dotenv/config";
 
 export const prerender = false;
 
@@ -182,86 +180,56 @@ export async function POST({
     );
   }
 
-  const embed = {
-    embeds: [
-      {
-        title: "📩 Nuevo contacto — Borghetti Studio",
-        color: 0xe8213b,
-        fields: [
-          {
-            name: "👤 Nombre",
-            value: nombre,
-            inline: true,
-          },
-          {
-            name: "📧 Email",
-            value: email,
-            inline: true,
-          },
-          {
-            name: "📸 Instagram",
-            value: instagram || "No especificado",
-            inline: true,
-          },
-          {
-            name: "💬 Mensaje",
-            value: mensaje,
-          },
-        ],
-        timestamp: new Date().toISOString(),
-      },
-    ],
-  };
+  const text = `📩 Nuevo contacto de ${nombre} (${email}${instagram ? `, @${instagram}` : ""}):\n\n${mensaje}`;
 
-  try {
-    const webhookUrl = (import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || "").trim();
+  const discordUrl = (import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || "").trim();
+  const botToken = import.meta.env.TELEGRAM_BOT_TOKEN || process.env.TELEGRAM_BOT_TOKEN || "";
+  const chatId = import.meta.env.TELEGRAM_CHAT_ID || process.env.TELEGRAM_CHAT_ID || "";
 
-    if (!webhookUrl) {
-      console.error("DISCORD_WEBHOOK_URL no está definida");
-      throw new Error("Webhook URL no configurada");
+  const errors: string[] = [];
+
+  if (discordUrl) {
+    try {
+      const r = await fetch(discordUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content: text }),
+      });
+      if (!r.ok) throw new Error(String(r.status));
+    } catch (e) {
+      errors.push(`Discord: ${e instanceof Error ? e.message : e}`);
     }
-
-    const payload = {
-      content: `📩 Nuevo contacto de ${nombre} (${email}${instagram ? `, @${instagram}` : ""}):\n\n${mensaje}`,
-    };
-
-    const res = await fetch(webhookUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload),
-    });
-
-    if (!res.ok) {
-      const text = await res.text();
-      console.error("Discord respondió:", res.status, text.slice(0, 200));
-      throw new Error("Error al enviar a Discord");
-    }
-  } catch (error) {
-    const msg = error instanceof Error ? error.message : "Error desconocido";
-    console.error("Error enviando a Discord:", msg);
-
-    return new Response(
-      JSON.stringify({
-        error: msg,
-      }),
-      {
-        status: 500,
-        headers: {
-          "Content-Type": "application/json",
-        },
-      },
-    );
   }
 
-  return new Response(
-    JSON.stringify({
-      ok: true,
-    }),
-    {
-      status: 200,
-      headers: {
-        "Content-Type": "application/json",
-      },
-    },
-  );
+  if (botToken && chatId) {
+    try {
+      const r = await fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ chat_id: Number(chatId), text }),
+      });
+      if (!r.ok) throw new Error(String(r.status));
+    } catch (e) {
+      errors.push(`Telegram: ${e instanceof Error ? e.message : e}`);
+    }
+  }
+
+  const configured = (!!discordUrl ? 1 : 0) + (!!botToken && !!chatId ? 1 : 0);
+
+  if (errors.length === configured && configured > 0) {
+    console.error("Todos los canales fallaron:", errors);
+    return new Response(JSON.stringify({ error: "Error al enviar el mensaje" }), {
+      status: 500,
+      headers: { "Content-Type": "application/json" },
+    });
+  }
+
+  if (errors.length) {
+    console.warn("Algún canal falló:", errors);
+  }
+
+  return new Response(JSON.stringify({ ok: true }), {
+    status: 200,
+    headers: { "Content-Type": "application/json" },
+  });
 }
