@@ -401,9 +401,10 @@
       } else {
         throw new Error(data.error);
       }
-    } catch {
-      status.textContent =
-        "Hubo un error. Intentá de nuevo o escribinos por Instagram.";
+    } catch (e) {
+      const msg = e instanceof Error ? e.message : "Error desconocido";
+      console.error("Contact form error:", msg);
+      status.textContent = msg || "Hubo un error. Intentá de nuevo o escribinos por Instagram.";
       status.classList.add("error");
     } finally {
       btn.disabled = false;

@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 export const prerender = false;
 
 const rateLimit = new Map<string, { count: number; resetAt: number }>();
@@ -210,23 +212,35 @@ export async function POST({
   };
 
   try {
-    const res = await fetch(import.meta.env.DISCORD_WEBHOOK_URL, {
+    const webhookUrl = (import.meta.env.DISCORD_WEBHOOK_URL || process.env.DISCORD_WEBHOOK_URL || "").trim();
+
+    if (!webhookUrl) {
+      console.error("DISCORD_WEBHOOK_URL no está definida");
+      throw new Error("Webhook URL no configurada");
+    }
+
+    const payload = {
+      content: `📩 Nuevo contacto de ${nombre} (${email}${instagram ? `, @${instagram}` : ""}):\n\n${mensaje}`,
+    };
+
+    const res = await fetch(webhookUrl, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(embed),
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
 
     if (!res.ok) {
-      throw new Error("Discord webhook error");
+      const text = await res.text();
+      console.error("Discord respondió:", res.status, text.slice(0, 200));
+      throw new Error("Error al enviar a Discord");
     }
   } catch (error) {
-    console.error("Error enviando a Discord:", error);
+    const msg = error instanceof Error ? error.message : "Error desconocido";
+    console.error("Error enviando a Discord:", msg);
 
     return new Response(
       JSON.stringify({
-        error: "Error al enviar el formulario",
+        error: msg,
       }),
       {
         status: 500,
